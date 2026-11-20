@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA 6-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <h1>Vice Cover Studio</h1>
+    <p class="tagline">Your photos, a caption, a Vice City cover — made offline, on your machine.</p>
+
+    <div class="group">
+      <label>Photos
+        <input id="photos" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button id="samplePier" type="button">Sample: pier</button>
+        <button id="sampleBoulevard" type="button">Sample: boulevard</button>
+        <button id="fillAll" type="button">Fill all panels</button>
+      </div>
+      <div id="photoList" class="photo-list" aria-label="Loaded photos"></div>
+      <p class="hint">Click a panel on the cover, then a photo chip, to put that photo in it. Drag a panel to pan, scroll to zoom.</p>
+    </div>
+
+    <div class="group">
+      <label>Layout
+        <select id="layout"></select>
+      </label>
+      <label>Grade
+        <select id="grade"></select>
+      </label>
+    </div>
+
+    <div class="group">
+      <label>Title
+        <input id="title" type="text" maxlength="40" value="VICE CITY">
+      </label>
+      <label>Subtitle (script)
+        <input id="subtitle" type="text" maxlength="48" value="one last score">
+      </label>
+      <label>Badge
+        <input id="badge" type="text" maxlength="16" value="EST. 2026">
+      </label>
+      <label>Heat meter
+        <input id="stars" type="range" min="0" max="5" step="1" value="4">
+        <output id="starOut">4 / 5</output>
+      </label>
+    </div>
+
+    <div class="group">
+      <p id="panelLabel" class="panel-label">Panel 1 of 4</p>
+      <label>Zoom
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+        <output id="zoomOut">100%</output>
+      </label>
+      <label>Pan X
+        <input id="panX" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <label>Pan Y
+        <input id="panY" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+    </div>
+
+    <div class="group row">
+      <button id="undo" type="button">Undo</button>
+      <button id="redo" type="button">Redo</button>
+      <button id="shuffle" type="button">Shuffle look</button>
+    </div>
+
+    <div class="group">
+      <label>Export size
+        <select id="exportSize"></select>
+      </label>
+      <div class="row">
+        <button id="export" type="button" class="primary">Export PNG</button>
+        <button id="exportAll" type="button">Export all 3 sizes</button>
+      </div>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+
+  <section class="stage-wrap" aria-label="Cover preview">
+    <canvas id="stage" width="1080" height="1080"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/editor.js"></script>
+</body>
+</html>
